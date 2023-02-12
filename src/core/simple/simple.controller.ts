@@ -1,14 +1,7 @@
-import {
-  Controller,
-  Get,
-  Post,
-  Body,
-  Patch,
-  Param,
-  Delete,
-} from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
 import { SimpleService } from './simple.service';
 import { CreateSimpleDto } from './dto/create-simple.dto';
+import { Simple } from './entities/simple.entity';
 // import { UpdateSimpleDto } from './dto/update-simple.dto';
 
 @Controller('simple')
@@ -16,8 +9,8 @@ export class SimpleController {
   constructor(private readonly simpleService: SimpleService) {}
 
   @Post()
-  create(@Body() createSimpleDto: CreateSimpleDto) {
-    return this.simpleService.create(createSimpleDto);
+  addSimple(@Body() body: Simple) {
+    return this.simpleService.addSimple(body);
   }
 
   @Get()

@@ -7,7 +7,7 @@ import { TransformInterceptor } from './interceptor/transform/transform.intercep
 import { knife4jConfig } from './configs/docs';
 import { BaseExceptionFilter } from './filters/base-exception/base-exception.filter';
 import { ConsoleLogInterceptor } from './interceptor/console-log/console-log.interceptor';
-import { ConfigModule, ConfigService } from '@nestjs/config';
+import { ConfigService } from '@nestjs/config';
 const spinner = ora();
 
 async function bootstrap() {

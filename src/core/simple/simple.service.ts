@@ -1,9 +1,14 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { CreateSimpleDto } from './dto/create-simple.dto';
+import { Repository } from 'typeorm';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Simple } from './entities/simple.entity';
 // import { UpdateSimpleDto } from './dto/update-simple.dto';
 
 @Injectable()
 export class SimpleService {
+  constructor(@InjectRepository(Simple) private readonly userRepositroy: Repository<Simple>) {}
+  // private readonly userRepositroy: Repository<Simple>;
   create(createSimpleDto: CreateSimpleDto) {
     return 'This action adds a new simple';
   }
@@ -30,5 +35,16 @@ export class SimpleService {
 
   remove(id: number) {
     return `This action removes a #${id} simple`;
+  }
+
+  /*
+   * 新增
+   * @param {CreateSimpleDto} createSimpleDto
+   * @returns {Promise<Simple>}
+   */
+  addSimple(body: Simple): Promise<Simple> {
+    console.log(this.userRepositroy);
+
+    return this.userRepositroy.save(body);
   }
 }

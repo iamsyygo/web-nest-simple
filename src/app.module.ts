@@ -1,7 +1,6 @@
 import { MiddlewareConsumer, Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { SimpleModule } from './core/simple/simple.module';
 import { LoggerMiddleware } from './middleware/logger/index.middleware';
 import { getAppImports, getAllCoreModule } from './configs/app';
 

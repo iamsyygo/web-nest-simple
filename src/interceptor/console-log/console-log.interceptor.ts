@@ -1,11 +1,5 @@
 // Description: Console log interceptor 🪂
-import {
-  BadGatewayException,
-  CallHandler,
-  ExecutionContext,
-  Injectable,
-  NestInterceptor,
-} from '@nestjs/common';
+import { CallHandler, ExecutionContext, Injectable, NestInterceptor } from '@nestjs/common';
 import { catchError, Observable, throwError } from 'rxjs';
 import { Logger } from 'src/configs/logs';
 import { getNowTime } from 'src/utils';
