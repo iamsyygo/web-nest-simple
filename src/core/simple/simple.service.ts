@@ -9,14 +9,15 @@ export class SimpleService {
   }
 
   findAll() {
-    throw new Error('错误');
+    // throw new Error('错误');
     // return '🛴 This action returns all simple';
     // throw new NotFoundException('找不到文章');
     // return 'This action returns all simple';
     // return new NotFoundException('找不到文章');
-    // return {
-    //   code: 200,
-    // };
+    return {
+      city: '北京',
+      weather: '晴天',
+    };
   }
 
   findOne(id: number) {

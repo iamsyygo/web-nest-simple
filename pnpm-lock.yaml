@@ -10,6 +10,7 @@ specifiers:
   '@nestjs/swagger': ^6.2.1
   '@nestjs/typeorm': ^9.0.1
   '@types/express': ^4.17.13
+  '@types/js-yaml': ^4.0.5
   '@types/node': ^16.0.0
   '@typescript-eslint/eslint-plugin': ^5.0.0
   '@typescript-eslint/parser': ^5.0.0
@@ -20,6 +21,7 @@ specifiers:
   eslint: ^8.0.1
   eslint-config-prettier: ^8.3.0
   eslint-plugin-prettier: ^4.0.0
+  js-yaml: ^4.1.0
   log4js: ^6.7.1
   mysql2: ^3.1.2
   nestjs-knife4j: ^1.0.1
@@ -44,6 +46,7 @@ dependencies:
   '@nestjs/typeorm': 9.0.1_mpdsrpzfalcz3y5zlsd3nxqzii
   add: 2.0.6
   cross-env: 7.0.3
+  js-yaml: 4.1.0
   log4js: 6.7.1
   mysql2: 3.1.2
   reflect-metadata: 0.1.13
@@ -55,6 +58,7 @@ devDependencies:
   '@nestjs/schematics': 9.0.4_typescript@4.7.4
   '@nestjs/swagger': 6.2.1_pwlerhfcldutg4bxlbqlfavbwi
   '@types/express': 4.17.17
+  '@types/js-yaml': 4.0.5
   '@types/node': 16.18.12
   '@typescript-eslint/eslint-plugin': 5.51.0_mgna7bo5ee6kaz3xjpj7gzesei
   '@typescript-eslint/parser': 5.51.0_l36yidrw337hwf2rtnamh77lgq
@@ -601,6 +605,10 @@ packages:
       '@types/express-serve-static-core': 4.17.33
       '@types/qs': 6.9.7
       '@types/serve-static': 1.15.0
+    dev: true
+
+  /@types/js-yaml/4.0.5:
+    resolution: {integrity: sha512-FhpRzf927MNQdRZP0J5DLIdTXhjLYzeUTmLAu69mnVksLH9CJY3IuSeEgbKUki7GQZm0WqDkGzyxju2EZGD2wA==}
     dev: true
 
   /@types/json-schema/7.0.11:

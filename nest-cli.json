@@ -4,5 +4,8 @@
   "sourceRoot": "src",
   "generateOptions": {
     "spec": false
+  },
+  "aliases": {
+    "@": "src"
   }
 }
