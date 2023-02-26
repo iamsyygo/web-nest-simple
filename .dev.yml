@@ -10,7 +10,7 @@ DATABASE:
   # 数据库名
   database: 'nest-simple'
   # 数据库打印日志
-  logging: true
+  logging: false
   # 是否开启同步数据表功能 , 生产环境一定要关闭，开启会删除所有数据
   synchronize: true
   # 是否自动加载实体

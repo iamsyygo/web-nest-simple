@@ -4,6 +4,7 @@ import { ConfigModule } from '@nestjs/config';
 import * as ora from 'ora';
 import { getYmlConfig } from 'src/utils/yml';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { SnakeNamingStrategy } from 'typeorm-naming-strategies';
 import { DataSource } from 'typeorm';
 // import * as CoreAllModule from '@/core';
 import * as fs from 'fs';
@@ -32,7 +33,10 @@ export const getAllCoreModule = () => {
     }
   }
   Object.values(data).forEach((item) => {
-    result.push(item);
+    // 判断是否为 class
+    if (/^class\s/.test(item.toString())) {
+      result.push(item);
+    }
   });
   return result;
 };
@@ -46,7 +50,10 @@ export const getAppImports = () => [
     load: [getYmlConfig], // 加载配置文件(注意: 不需要手动执行 getYmlConfig()会自动执行)
   }),
   TypeOrmModule.forRootAsync({
-    useFactory: () => ({ ...getYmlConfig('DATABASE') }),
+    useFactory: () => ({
+      ...getYmlConfig('DATABASE'),
+      namingStrategy: new SnakeNamingStrategy(), // 字段转换为下划线
+    }),
     async dataSourceFactory(options) {
       if (!options) throw new Error('传递无效选项');
       const spinner = ora();

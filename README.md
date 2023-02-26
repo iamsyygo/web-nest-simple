@@ -2,8 +2,6 @@
   <img src="https://nestjs.com/img/logo-small.svg" width="150" alt="Nest Logo" />
 </p>
 
-
-
 - 🛴 使用 `pnpm` 进行依赖管理
 - 📖 对 `http` and `程序` 错误进行捕获返回统一结构格式响应
 - 🥽 对每次请求进行日志管理,美化输出到控制台 and 日志文件中
@@ -30,8 +28,6 @@ npm run start:dev
 npm run start:prod
 ```
 
-
-
 #### 错误捕获、响应统一
 
 ```js
@@ -52,8 +48,6 @@ npm run start:prod
 #### 日志输出
 
 ![](./img/iShot_2023-02-12_18.19.32.png)
-
-
 
 #### 业务模块统一集中管理(自动 imports AppModule)
 
@@ -110,8 +104,6 @@ export const getAppImports = () => [
 ];
 ```
 
-
-
 ### 集成 Swagger and knife4j API 文档
 
 ```js
@@ -136,9 +128,22 @@ export const knife4jConfig = (app) => {
 };
 ```
 
-
-
 #### 数据库操作
+
+`ORM` 就是这样，把关系数据库的结构映射到对象上。而我们只要传入这些结构的`javaScript`对象，数据库就会自行对应存储数据
+
+每个实体都必须要有一个主列
+
+- 用`@PrimaryColumn()`来标记主列，需要给它手动分配值
+
+- 用`@PrimaryGeneratedColumn()`来标记主列，该值将使用自动增量值自动生成
+
+- 用`@PrimaryGeneratedColumn('uuid')`来标记主列，该值将使用`uuid`（通用唯一标识符）自动生成，`uuid`可以被认为是唯一的
+
+作者：原野风殇
+链接：https://juejin.cn/post/7184350230492479545
+来源：稀土掘金
+著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
 
 在 entity 创建数据主体元信息 `src/core/simple/entities/simple.entity.ts`
 
@@ -172,8 +177,6 @@ export class Simple {
 }
 ```
 
-
-
 在 `src/core/simple/simple.module.ts` 中 imports
 
 ```js
@@ -191,8 +194,6 @@ import { Simple } from './entities/simple.entity';
 export class SimpleModule {}
 ```
 
-
-
 在 `src/core/simple/simple.service.ts` 注入
 
 ```js
@@ -208,7 +209,7 @@ export class SimpleService {
   // 方式一
   constructor(@InjectRepository(Simple) private readonly userRepositroy: Repository<Simple>) {}
   // private readonly userRepositroy: Repository<Simple>; // 方式二
-  
+
   /*
    * 新增
    * @param {CreateSimpleDto} createSimpleDto
@@ -222,10 +223,32 @@ export class SimpleService {
 }
 ```
 
-
-
-
-
 ## License
 
 Nest is [MIT licensed](LICENSE).
+
+### Typeorm-model-generator
+
+-h IP 地址
+-d 数据库名字
+-p 端口
+-u 用户名
+-x 密码
+-e 数据库类型
+-o entities 表示输出到指定的文件夹
+-noConfig true 表示不生成 ormconfig.json 和 tsconfig.json 文件
+-ce pascal 表示将类名转换首字母是大写的驼峰命名
+-cp camel 表示将数据库中的字段比如 create_at 转换为 createAt
+-a 表示会继承一个 BaseEntity 的类,根据自己需求加
+
+```js
+npx rimraf ./src/entities && npx typeorm-model-generator -h localhost -d nestjs -p 3306 -u root -x 123456 -e mysql --ce pascal --cp camel -o src/entities --noConfig true
+```
+
+动态生成表结构时需要重新生产实体类
+
+```js
+import { execSync } from 'child_process';
+
+execSync('npm run gen:entity');
+```
